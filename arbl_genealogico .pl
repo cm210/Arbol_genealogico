@@ -1,0 +1,90 @@
+% --- GÉNERO ---
+mujer(maxima_mareno_gutieres).
+hombre(fermil_caro_conde).
+mujer(angelica_ayaviri_puente).
+hombre(genaro_mirabal_estalla).
+
+mujer(ruth_caro_mareno).
+hombre(isidoro_mirabal_ayaviri).
+
+hombre(jonathan_mirabal_caro).
+hombre(yamal_jordan_mirabal_caro).
+mujer(jimena_mirabal_caro).
+mujer(georgina_mirabal_caro).
+mujer(joanna_ruth_mirabal_caro).
+mujer(dubeysa_mirabal_caro).
+
+mujer(karen_aguilar_moscoso).
+
+hombre(jonathan_mirabal_aguilar).
+mujer(ruth_meri_mirabal_aguilar).
+mujer(estefani_mirabal_aguilar).
+
+hombre(johnny_quispe_borja).
+hombre(matias_jairo_quispe_mirabal).
+hombre(santiago_yeiko_quispe_mirabal).
+hombre(antoni_quispe_mirabal).
+mujer(jhalcarla_ruth_quispe_mirabal).
+
+% --- PAREJAS ---
+pareja(fermil_caro_conde, maxima_mareno_gutieres).
+pareja(genaro_mirabal_estalla, angelica_ayaviri_puente).
+pareja(isidoro_mirabal_ayaviri, ruth_caro_mareno).
+pareja(jonathan_mirabal_caro, karen_aguilar_moscoso).
+pareja(jimena_mirabal_caro, johnny_quispe_borja).
+
+% --- PADRES ---
+padre(fermil_caro_conde, ruth_caro_mareno).
+madre(maxima_mareno_gutieres, ruth_caro_mareno).
+
+padre(genaro_mirabal_estalla, isidoro_mirabal_ayaviri).
+madre(angelica_ayaviri_puente, isidoro_mirabal_ayaviri).
+
+padre(isidoro_mirabal_ayaviri, jonathan_mirabal_caro).
+madre(ruth_caro_mareno, jonathan_mirabal_caro).
+
+padre(isidoro_mirabal_ayaviri, yamal_jordan_mirabal_caro).
+madre(ruth_caro_mareno, yamal_jordan_mirabal_caro).
+
+padre(isidoro_mirabal_ayaviri, jimena_mirabal_caro).
+madre(ruth_caro_mareno, jimena_mirabal_caro).
+
+padre(isidoro_mirabal_ayaviri, georgina_mirabal_caro).
+madre(ruth_caro_mareno, georgina_mirabal_caro).
+
+padre(isidoro_mirabal_ayaviri, joanna_ruth_mirabal_caro).
+madre(ruth_caro_mareno, joanna_ruth_mirabal_caro).
+
+padre(isidoro_mirabal_ayaviri, dubeysa_mirabal_caro).
+madre(ruth_caro_mareno, dubeysa_mirabal_caro).
+
+padre(jonathan_mirabal_caro, jonathan_mirabal_aguilar).
+madre(karen_aguilar_moscoso, jonathan_mirabal_aguilar).
+
+padre(jonathan_mirabal_caro, ruth_meri_mirabal_aguilar).
+madre(karen_aguilar_moscoso, ruth_meri_mirabal_aguilar).
+
+padre(jonathan_mirabal_caro, estefani_mirabal_aguilar).
+madre(karen_aguilar_moscoso, estefani_mirabal_aguilar).
+
+padre(johnny_quispe_borja, matias_jairo_quispe_mirabal).
+madre(jimena_mirabal_caro, matias_jairo_quispe_mirabal).
+
+padre(johnny_quispe_borja, santiago_yeiko_quispe_mirabal).
+madre(jimena_mirabal_caro, santiago_yeiko_quispe_mirabal).
+
+padre(johnny_quispe_borja, antoni_quispe_mirabal).
+madre(jimena_mirabal_caro, antoni_quispe_mirabal).
+
+padre(johnny_quispe_borja, jhalcarla_ruth_quispe_mirabal).
+madre(jimena_mirabal_caro, jhalcarla_ruth_quispe_mirabal).
+
+% --- REGLAS ÚTILES ---
+abuelo(X, Y) :- padre(X, Z), padre(Z, Y).
+abuelo(X, Y) :- padre(X, Z), madre(Z, Y).
+
+abuela(X, Y) :- madre(X, Z), padre(Z, Y).
+abuela(X, Y) :- madre(X, Z), madre(Z, Y).
+
+nieto(X, Y) :- hombre(X), (abuelo(Y, X); abuela(Y, X)).
+nieta(X, Y) :- mujer(X), (abuelo(Y, X); abuela(Y, X)).
